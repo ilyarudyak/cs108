@@ -73,6 +73,57 @@ public class StringCodeTest {
 		assertEquals(3, StringCode.maxRun("1112233"));
 	}
 
-	// TODO Need test cases for stringIntersect
-	
+	//
+	// stringIntersect
+	//
+    @Test
+    public void stringIntersect1() {
+
+        // trivial case
+        assertTrue(StringCode.stringIntersect("xxyyzz", "xx", 2));
+        assertFalse(StringCode.stringIntersect("xxyyzz", "aa", 2));
+
+        // works with len == 1
+        assertTrue(StringCode.stringIntersect("xxyyzz", "xx", 1));
+        assertFalse(StringCode.stringIntersect("xxyyzz", "aa", 1));
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void stringIntersect2() {
+        StringCode.stringIntersect("", "aa", 2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void stringIntersect3() {
+        StringCode.stringIntersect("a", "aa", 0);
+    }
+
+    @Test
+    public void stringIntersect4() {
+
+        // works when len > s.length()
+        assertFalse(StringCode.stringIntersect("xxyyzz", "xx", 3));
+
+        // works with the beginning
+        assertTrue(StringCode.stringIntersect("xxxyyzz", "aaaxxxcc", 3));
+        assertTrue(StringCode.stringIntersect("xzzyyzz", "aaaxxxcc", 1));
+
+        // works with the end
+        assertTrue(StringCode.stringIntersect("xxxyyyz", "aaazzzcc", 1));
+        assertTrue(StringCode.stringIntersect("xxxyyzz", "aaazzzcc", 2));
+        assertTrue(StringCode.stringIntersect("xxxyzzz", "aaazzzzz", 3));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

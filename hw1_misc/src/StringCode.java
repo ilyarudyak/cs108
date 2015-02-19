@@ -99,13 +99,30 @@ public class StringCode {
 	 */
 	public static boolean stringIntersect(String a, String b, int len) {
 
-        return false; // TO DO ADD YOUR CODE HERE
+        Set<String> seta = buildSet(a, len);
+        Set<String> setb = buildSet(b, len);
+        seta.retainAll(setb);
+
+        return !seta.isEmpty();
 	}
+
+    // build set of all substring of length l
+    private static Set<String> buildSet(String s, int len) {
+
+        if (len < 1 || s.isEmpty()) throw new IllegalArgumentException("len < 1");
+
+        Set<String> set = new HashSet<>();
+        for (int i=0; i<s.length()-len+1; i++) {
+            set.add(s.substring(i,i+len));
+//            System.out.println(i);
+        }
+        return set;
+    }
 
     public static void main(String[] args) {
 
         String s = "xxyyyz";
-        System.out.println(maxRun(s));
+        System.out.println(buildSet(s, 1));
     }
 }
 
