@@ -47,31 +47,31 @@ public class StringCodeTest {
 	}
 
 
-//	//
-//	// maxRun
-//	//
-//	@Test @Ignore
-//	public void testRun1() {
-//		assertEquals(2, StringCode.maxRun("hoopla"));
-//		assertEquals(3, StringCode.maxRun("hoopllla"));
-//	}
-//
-//	@Test @Ignore
-//	public void testRun2() {
-//		assertEquals(3, StringCode.maxRun("abbcccddbbbxx"));
-//		assertEquals(0, StringCode.maxRun(""));
-//		assertEquals(3, StringCode.maxRun("hhhooppoo"));
-//	}
-//
-//	@Test @Ignore
-//	public void testRun3() {
-//		// "evolve" technique -- make a series of test cases
-//		// where each is change from the one above.
-//		assertEquals(1, StringCode.maxRun("123"));
-//		assertEquals(2, StringCode.maxRun("1223"));
-//		assertEquals(2, StringCode.maxRun("112233"));
-//		assertEquals(3, StringCode.maxRun("1112233"));
-//	}
+	//
+	// maxRun
+	//
+	@Test
+	public void testRun1() {
+		assertEquals(2, StringCode.maxRun("hoopla"));
+		assertEquals(3, StringCode.maxRun("hoopllla"));
+	}
+
+	@Test
+	public void testRun2() {
+		assertEquals(3, StringCode.maxRun("abbcccddbbbxx"));
+		assertEquals(0, StringCode.maxRun(""));
+		assertEquals(3, StringCode.maxRun("hhhooppoo"));
+	}
+
+	@Test
+	public void testRun3() {
+		// "evolve" technique -- make a series of test cases
+		// where each is change from the one above.
+		assertEquals(1, StringCode.maxRun("123"));
+		assertEquals(2, StringCode.maxRun("1223"));
+		assertEquals(2, StringCode.maxRun("112233"));
+		assertEquals(3, StringCode.maxRun("1112233"));
+	}
 
 	// TODO Need test cases for stringIntersect
 	

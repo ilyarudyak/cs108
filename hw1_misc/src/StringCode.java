@@ -8,12 +8,29 @@ public class StringCode {
 
 	/**
 	 * Given a string, returns the length of the largest run.
-	 * A a run is a series of adajcent chars that are the same.
-	 * @param str
+	 * A a run is a series of adjacent chars that are the same.
+	 * @param s
 	 * @return max run length
 	 */
-	public static int maxRun(String str) {
-		return 0; // TODO ADD YOUR CODE HERE
+	public static int maxRun(String s) {
+
+        if (s.isEmpty()) return 0;
+
+        int max = 1, count = 1;
+        for(int i=0; i<s.length()-1; i++) {
+
+            if (s.charAt(i) == s.charAt(i+1)) {
+                count++;
+
+            }
+            else {
+                if (count > max)
+                    max = count;
+                count = 1;
+            }
+//            System.out.println(count+" "+max);
+        }
+		return max;
 	}
 
 	
@@ -87,8 +104,8 @@ public class StringCode {
 
     public static void main(String[] args) {
 
-        String s = "xx3abb";
-        System.out.println(blowup(s));
+        String s = "xxyyyz";
+        System.out.println(maxRun(s));
     }
 }
 
