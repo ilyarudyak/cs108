@@ -100,25 +100,70 @@ public class CharGrid {
 	 * @return number of + in grid
 	 */
 	public int countPlus() {
-		return 0; // TODO ADD YOUR CODE HERE
+
+        int count = 0;
+        for (int i=1; i<grid.length-1; i++) {
+            for (int j=1; j<grid[0].length-1; j++) {
+                if (checkFirst(i, j) && checkSecond(i,j))
+                    count++;
+                }
+            }
+		return count;
 	}
+
+    // check first level in all directions from (i, j)
+    private boolean checkFirst(int i, int j) {
+
+        return  grid[i-1][j] == grid[i][j] &&
+                grid[i+1][j] == grid[i][j] &&
+                grid[i][j-1] == grid[i][j] &&
+                grid[i][j+1] == grid[i][j];
+    }
+
+    private boolean checkSecond(int i, int j) {
+
+        // if at least one character on the 2nd level == grid[i][j]
+        // then we have to check other characters
+        if (    (i-2>0              && grid[i-2][j] == grid[i][j]) ||
+                (i+2<grid.length    && grid[i+2][j] == grid[i][j]) ||
+                (j-2>0              && grid[i][j-2] == grid[i][j]) ||
+                (j+2<grid[0].length && grid[i][j+2] == grid[i][j])
+                ) {
+            return checkLevelN(i, j, 2);
+        }
+        return true;
+    }
+
+    // we check only if one character on the Nth level == grid[i][j]
+    private boolean checkLevelN(int i, int j, int N) {
+
+        // if we can not go up to N level in ALL directions - false
+        if (i-N<0 || i+N>=grid.length || j-N<0 || j+N>=grid[0].length) {
+            return false;
+        }
+
+        return  grid[i-N][j] == grid[i][j] &&
+                grid[i+N][j] == grid[i][j] &&
+                grid[i][j-N] == grid[i][j] &&
+                grid[i][j+N] == grid[i][j];
+    }
 
     public static void main(String[] args) {
 
         char[][] grid = new char[][] {
-                {'c', 'a', ' '},
-                {'b', ' ', 'b'},
-                {' ', ' ', 'a'}
+                {' ', ' ', 'p', ' ', ' ', ' ', ' ', ' ', ' '},
+                {' ', ' ', 'p', ' ', ' ', ' ', ' ', 'x', ' '},
+                {'p', 'p', 'p', 'p', 'p', ' ', 'x', 'x', 'x'},
+                {' ', ' ', 'p', ' ', ' ', 'y', ' ', 'x', ' '},
+                {' ', ' ', 'p', ' ', 'y', 'y', 'y', ' ', ' '},
+                {'z', 'z', 'z', 'z', 'z', 'y', 'z', 'z', 'z'},
+                {' ', ' ', 'x', 'x', ' ', 'y', ' ', ' ', ' '},
+
         };
 
         CharGrid cg = new CharGrid(grid);
+        System.out.println(cg.countPlus());
 
-//        System.out.println(cg.charArea('c'));
-//        System.out.println(cg.rowLength('c'));
-//        System.out.println(cg.columnLength('c'));
-
-//        System.out.println(Arrays.toString(grid[0]));
-//        System.out.println(Arrays.binarySearch(cg.grid[0], 'c'));
 
     }
 
