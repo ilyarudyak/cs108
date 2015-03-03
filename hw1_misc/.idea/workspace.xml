@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee62eeb9-d535-477b-a7d6-5ded9fe45a31" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Appearances.java" afterPath="$PROJECT_DIR$/src/Appearances.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Taboo.java" afterPath="$PROJECT_DIR$/src/Taboo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TabooTest.java" afterPath="$PROJECT_DIR$/src/TabooTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hw1_misc.iws" />
@@ -43,7 +40,7 @@
       <file leaf-file-name="TabooTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TabooTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83469725" vertical-offset="510" max-vertical-offset="1411">
+            <state vertical-scroll-proportion="1.6693945" vertical-offset="0" max-vertical-offset="1411">
               <caret line="64" column="74" selection-start-line="64" selection-start-column="74" selection-end-line="64" selection-end-column="74" />
               <folding />
             </state>
@@ -702,7 +699,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TabooTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83469725" vertical-offset="510" max-vertical-offset="1411">
+        <state vertical-scroll-proportion="1.6693945" vertical-offset="0" max-vertical-offset="1411">
           <caret line="64" column="74" selection-start-line="64" selection-start-column="74" selection-end-line="64" selection-end-column="74" />
           <folding />
         </state>
