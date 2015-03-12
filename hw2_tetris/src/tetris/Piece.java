@@ -1,6 +1,8 @@
 // Piece.java
 package tetris;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.*;
 
 /**
@@ -26,6 +28,7 @@ public class Piece {
 	private int[] skirt;
 	private int width;
 	private int height;
+
 	private Piece next; // "next" rotation
 
 	static private Piece[] pieces;	// singleton static array of first rotations
@@ -35,10 +38,33 @@ public class Piece {
 	 Makes its own copy of the array and the TPoints inside it.
 	*/
 	public Piece(TPoint[] points) {
-		// YOUR CODE HERE
+        body = points;
+        buildWidthHeight();
+        buildSkirt();
 	}
-	
 
+    private void buildSkirt() {
+        skirt = new int[width];
+        Arrays.fill(skirt, -1);
+//        System.out.println(Arrays.toString(skirt));
+        for (TPoint p: body) {
+            if (skirt[p.x] == -1) { skirt[p.x] = p.y; }
+            else if (p.y < skirt[p.x]) { skirt[p.x] = p.y; }
+        }
+
+    }
+	
+    private void buildWidthHeight() {
+
+        width = 0;
+        height = 0;
+        for (TPoint p: body) {
+            if (p.x > width) { width = p.x; }
+            if (p.y > height) { height = p.y; }
+        }
+        width++;
+        height++;
+    }
 	
 	
 	/**
@@ -88,8 +114,20 @@ public class Piece {
 	 rotated from the receiver.
 	 */
 	public Piece computeNextRotation() {
-		return null; // YOUR CODE HERE
+
+        StringBuilder sb = new StringBuilder();
+        buildRotateStr(sb, height);
+
+		return new Piece(sb.toString());
 	}
+
+    private void buildRotateStr(StringBuilder sb, int size) {
+
+
+        for(TPoint p: body) {
+            sb.append((size-p.y-1) + " " + p.x + "  ");
+        }
+    }
 
 	/**
 	 Returns a pre-computed piece that is 90 degrees counter-clockwise
@@ -100,10 +138,9 @@ public class Piece {
 	public Piece fastRotation() {
 		return next;
 	}
-	
 
 
-	/**
+    /**
 	 Returns true if two pieces are the same --
 	 their bodies contain the same points.
 	 Interestingly, this is not the same as having exactly the
@@ -120,15 +157,26 @@ public class Piece {
 		if (!(obj instanceof Piece)) return false;
 		Piece other = (Piece)obj;
 		
-		// YOUR CODE HERE
+        for (TPoint p: body) {
+            if (!isContain(other.body, p)) { return false; }
+        }
+
 		return true;
 	}
+
+    private boolean isContain(TPoint[] points, TPoint point) {
+
+        for (TPoint p: points) {
+            if (p.equals(point)) { return true; }
+        }
+        return false;
+    }
 
 
 	// String constants for the standard 7 tetris pieces
 	public static final String STICK_STR	= "0 0	0 1	 0 2  0 3";
 	public static final String L1_STR		= "0 0	0 1	 0 2  1 0";
-	public static final String L2_STR		= "0 0	1 0 1 1	 1 2";
+	public static final String L2_STR		= "0 0	1 0  1 1  1 2";
 	public static final String S1_STR		= "0 0	1 0	 1 1  2 1";
 	public static final String S2_STR		= "0 1	1 1  1 0  2 0";
 	public static final String SQUARE_STR	= "0 0  0 1  1 0  1 1";
@@ -187,7 +235,19 @@ public class Piece {
 	 to the first piece.
 	*/
 	private static Piece makeFastRotations(Piece root) {
-		return null; // YOUR CODE HERE
+
+        Piece prev;
+        Piece rotated = root.computeNextRotation();
+        root.next = rotated;
+
+        while (!rotated.equals(root)) {
+
+            prev = rotated;
+            rotated = prev.computeNextRotation();
+            prev.next = rotated;
+
+        }
+		return root;
 	}
 	
 	
@@ -217,7 +277,30 @@ public class Piece {
 		return array;
 	}
 
-	
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (TPoint p: body) {
+            sb.append(p.toString() + " ");
+        }
+
+        sb.append(" " + "width=" + width + " height=" + height +
+                  " skirt=" + Arrays.toString(skirt));
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+
+
+        Piece l1 = new Piece(Piece.L1_STR);
+        makeFastRotations(l1);
+        System.out.println(l1.next);
+        System.out.println(l1.next.next);
+        System.out.println(l1.next.next.next);
+        System.out.println(l1.next.next.next.next.equals(l1));
+
+    }
 
 
 }

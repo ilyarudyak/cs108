@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 
 /**
  * Created by ilyarudyak on 05/03/15.
@@ -21,11 +22,12 @@ public class TablePanel extends JTable {
 
     public TablePanel() {
         table = new JTable(data, headings);
-        add(new JScrollPane(table));
+        setLayout(new BorderLayout());
+        add(table, BorderLayout.CENTER);
 
         // set border for the entire panel
         Border innerBorder = BorderFactory.createEtchedBorder();
-        Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);
+        Border outerBorder = BorderFactory.createEmptyBorder(12,5,5,5);
         setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
     }
 }
