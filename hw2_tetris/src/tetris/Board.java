@@ -3,6 +3,8 @@ package tetris;
 
 import com.google.common.primitives.Ints;
 
+import java.util.Arrays;
+
 /**
  CS108 Tetris Board.
  Represents a Tetris board -- essentially a 2-d grid
@@ -34,6 +36,11 @@ public class Board	{
     // how many filled spots
     // there are in each column
     int[] heights;
+
+    // copy of all variables for undo()
+    private boolean[][] gridCopy;
+    int[] widthsCopy;
+    int[] heightsCopy;
 	
 
 	/**
@@ -50,7 +57,6 @@ public class Board	{
         heights = new int[width];
 
 		
-		// TODO YOUR CODE HERE
 	}
 
     // ------------- grid getters ---------------
@@ -130,8 +136,13 @@ public class Board	{
 	 Implementation: use the skirt and the col heights
 	 to compute this fast -- O(skirt length).
 	*/
-	public int dropHeight(Piece piece, int x) {
-		return 0; // TODO YOUR CODE HERE
+	public int dropHeight(Piece piece, int x0) {
+
+        int[] h = new int[piece.getWidth()];
+        for (int x=x0; x<piece.getWidth(); x++) {
+            h[x] = heights[x] - piece.getSkirt()[x];
+        }
+		return Ints.max(h);
 	}
 
 	/**
@@ -151,6 +162,13 @@ public class Board	{
 	public int place(Piece piece, int x, int y) {
 		// flag !committed problem
 		if (!committed) throw new RuntimeException("place commit problem");
+
+        // copy all variables for undo()
+        widthsCopy = Arrays.copyOf(widths, widths.length);
+        heightsCopy = Arrays.copyOf(heights, heights.length);
+        for (int i=0; i<grid.length; i++) {
+            gridCopy[i] = Arrays.copyOf(grid[i], grid[i].length);
+        }
 			
         for (TPoint p: piece.getBody()) {
 
@@ -164,6 +182,9 @@ public class Board	{
                 if (y + p.y + 1 > heights[x + p.x]) {
                     heights[x + p.x] = y + p.y + 1;
                 }
+
+                // set commit
+                committed = false;
             }
         }
 
@@ -200,10 +221,10 @@ public class Board	{
             clearRow(indexRowFilled);
             rowsCleared++;
             indexRowFilled = getRowFilled();
-//            System.out.println(indexRowFilled);
             if (indexRowFilled == -1) { break; }
         }
-//		sanityCheck();
+		sanityCheck();
+        committed = false;
 		return rowsCleared;
 	}
 
@@ -236,7 +257,18 @@ public class Board	{
 	 See the overview docs.
 	*/
 	public void undo() {
-		// TODO YOUR CODE HERE
+
+        // when the board is already in the
+        // committed state silently do nothing
+        if (committed) { return; }
+		else {
+
+            widths = widthsCopy;
+            heights = heightsCopy;
+            grid = gridCopy;
+
+            committed = true;
+        }
 	}
 
 	/**
@@ -253,9 +285,46 @@ public class Board	{
      for debugging.
      */
     public void sanityCheck() {
+
         if (DEBUG) {
-            // TODO YOUR CODE HERE
+
+            int[] w = buildWidths();
+            int[] h = buildHeight();
+            assert(Arrays.equals(w, widths));
+            assert(Arrays.equals(h, heights));
+
         }
+    }
+
+    private int[] buildHeight() {
+
+        int[] h = new int[width];
+        int count;
+
+        for (int x=0; x<heights.length; x++) {
+            count = 0;
+            for (int y=0; y<widths.length; y++) {
+                if(grid[x][y]) { count++; }
+                else { break; }
+            }
+            h[x] = count++;
+        }
+        return h;
+
+    }
+
+    private int[] buildWidths() {
+
+        int[] w = new int[height];
+        int count;
+        for (int y=0; y<widths.length; y++) {
+            count = 0;
+            for (int x=0; x<heights.length; x++) {
+                if(grid[x][y]) { count++; }
+            }
+            w[y] = count;
+        }
+        return w;
     }
 	
 	/*

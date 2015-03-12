@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class BoardTest {
 	Board b;
-	Piece pyr1, pyr2, pyr3, pyr4, s, sRotated;
+	Piece pyr1, pyr2, pyr3, pyr4, s, sRotated, l1;
     Piece[] pieces;
 
 	// This shows how to build things in setUp() to re-use
@@ -28,6 +28,8 @@ public class BoardTest {
 		
 		s = new Piece(Piece.S1_STR);
 		sRotated = s.computeNextRotation();
+
+        l1 = new Piece(Piece.L1_STR);
 
         pieces = Piece.getPieces();
 	}
@@ -52,17 +54,16 @@ public class BoardTest {
 	public void testSample2() {
 
 
-		b.commit();
 		int result = b.place(sRotated, 1, 1);
-		assertEquals(Board.PLACE_OK, result);
-		assertEquals(1, b.getColumnHeight(0));
+        assertEquals(Board.PLACE_OK, result);
+		assertEquals(0, b.getColumnHeight(0));
 		assertEquals(4, b.getColumnHeight(1));
 		assertEquals(3, b.getColumnHeight(2));
 		assertEquals(4, b.getMaxHeight());
 	}
 
     @Test @Ignore
-    public void testPlace() {
+    public void testPlace1() {
 
         assertEquals(Board.PLACE_ROW_FILLED, b.place(pieces[Piece.PYRAMID], 0, 0));
         assertArrayEquals(new int[] {3,1,0,0,0,0}, b.widths);
@@ -79,11 +80,11 @@ public class BoardTest {
         assertArrayEquals(new int[] {5,3,4}, b.heights);
         assertEquals(5, b.getMaxHeight());
 
-        System.out.println(b);
+//        System.out.println(b);
 
     }
 
-    @Test
+    @Test @Ignore
     public void testClearRows() {
 
         b.place(pieces[Piece.PYRAMID], 0, 0);
@@ -92,14 +93,30 @@ public class BoardTest {
         b.place(pieces[Piece.STICK], 0, 1);
         b.place(pieces[Piece.S2].fastRotation(), 1, 3);
 
-        System.out.println(b);
+//        System.out.println(b);
 
         b.clearRows();
 
-        System.out.println(b);
+//        System.out.println(b);
     }
-	
 
-	
-	
+    @Test
+    public void testDropHeight() {
+
+        Board board = new Board(3, 6);
+        board.place(pieces[Piece.PYRAMID], 0, 0);
+        assertEquals(2, board.dropHeight(s, 0));
+
+        board = new Board(3, 6);
+        board.place(pieces[Piece.L1].fastRotation(), 0, 0);
+        assertEquals(1, board.dropHeight(s, 0));
+        assertEquals(1, board.dropHeight(pyr4, 0));
+
+
+
+    }
+
+
+
+
 }
