@@ -1,6 +1,9 @@
 // JTetris.java
 package tetris;
 
+import tetris.board.Board;
+import tetris.piece.Piece;
+
 import java.awt.*;
 import javax.swing.*;
 

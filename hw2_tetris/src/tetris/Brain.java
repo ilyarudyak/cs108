@@ -2,6 +2,9 @@
 
 package tetris;
 
+import tetris.board.Board;
+import tetris.piece.Piece;
+
 public interface Brain {
     // Move is used as a struct to store a single Move
     // ("static" here means it does not have a pointer to an

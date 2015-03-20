@@ -2,6 +2,9 @@
 
 package tetris;
 
+import tetris.board.Board;
+import tetris.piece.Piece;
+
 /**
  Provided code.
  A simple Brain implementation.

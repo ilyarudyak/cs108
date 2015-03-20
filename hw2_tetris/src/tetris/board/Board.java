@@ -1,7 +1,9 @@
 // Board.java
-package tetris;
+package tetris.board;
 
 import com.google.common.primitives.Ints;
+import tetris.TPoint;
+import tetris.piece.Piece;
 
 import java.util.Arrays;
 
@@ -26,7 +28,7 @@ public class Board	{
 
 	private boolean[][] grid;
 
-	private boolean DEBUG = true;
+	private boolean DEBUG = false;
 	boolean committed;
 
     // how many filled spots
@@ -51,10 +53,13 @@ public class Board	{
 		this.width = width;
 		this.height = height;
 		grid = new boolean[width][height];
+        gridCopy = new boolean[width][height];
 		committed = true;
 
         widths = new int[height];
         heights = new int[width];
+        widthsCopy = new int[height];
+        heightsCopy = new int[width];
 
 		
 	}
@@ -83,16 +88,15 @@ public class Board	{
      */
     public boolean getGrid(int x, int y) {
 
-        if (    x < 0 || x >= width ||
-                y < 0 || y >= height ) {
+        if (    x < 0 || x >= width  ||
+                y < 0 || y >= height ||
+                grid[x][y] ) {
             return true;
         }
 
-        // spot is filled if grid == true
-        if (grid[x][y] == true) { return true; }
-
         return false;
     }
+
 
     // ------------- column height --------------
 
@@ -136,14 +140,18 @@ public class Board	{
 	 Implementation: use the skirt and the col heights
 	 to compute this fast -- O(skirt length).
 	*/
-	public int dropHeight(Piece piece, int x0) {
+	public int dropHeight(Piece piece, int x) {
 
-        int[] h = new int[piece.getWidth()];
-        for (int x=x0; x<piece.getWidth(); x++) {
-            h[x] = heights[x] - piece.getSkirt()[x];
+
+        int result = 0;
+        int[] skirt = piece.getSkirt();
+        for (int i = 0; i < skirt.length && x+i < width; i++) {
+            int y = heights[x + i] - skirt[i];
+            if (y > result)
+                result = y;
         }
-		return Ints.max(h);
-	}
+        return result;
+    }
 
 	/**
 	 Attempts to add the body of a piece to the board.
@@ -159,38 +167,51 @@ public class Board	{
 	 In both error cases, the board may be left in an invalid
 	 state. The client can use undo(), to recover the valid, pre-place state.
 	*/
-	public int place(Piece piece, int x, int y) {
+	public int place(Piece piece, int x0, int y0) {
+
 		// flag !committed problem
 		if (!committed) throw new RuntimeException("place commit problem");
+        committed = false;
+        backup();
 
-        // copy all variables for undo()
-        widthsCopy = Arrays.copyOf(widths, widths.length);
-        heightsCopy = Arrays.copyOf(heights, heights.length);
-        for (int i=0; i<grid.length; i++) {
-            gridCopy[i] = Arrays.copyOf(grid[i], grid[i].length);
-        }
-			
+        int x, y;
+        int result = PLACE_OK;
         for (TPoint p: piece.getBody()) {
 
-            if (isOutOfBounds(x + p.x, y + p.y)) { return PLACE_OUT_BOUNDS; }
-            else if (getGrid(x + p.x, y + p.y)) { return PLACE_BAD; }
+            x = x0 + p.x;
+            y = y0 + p.y;
+            if (isOutOfBounds(x, y)) { result = PLACE_OUT_BOUNDS; break; }
+            else if (grid[x][y]) { result = PLACE_BAD; break; }
             else {
-                grid[x + p.x][y + p.y] = true;
+                grid[x][y] = true;
+                updateWidthHeight(x, y);
 
-                // update widths and heights
-                widths[y + p.y]++;
-                if (y + p.y + 1 > heights[x + p.x]) {
-                    heights[x + p.x] = y + p.y + 1;
-                }
-
-                // set commit
-                committed = false;
+                // if now this row is filled
+                if (widths[y] == width) { result = PLACE_ROW_FILLED; }
             }
         }
 
-        if (getRowFilled() != -1) { return PLACE_ROW_FILLED; }
-		return PLACE_OK;
+        sanityCheck();
+		return result;
 	}
+
+    private void updateWidthHeight(int x, int y) {
+        // update widths and heights
+        widths[y]++;
+        if (y + 1 > heights[x]) {
+            heights[x] = y + 1;
+        }
+    }
+
+    private void backup() {
+        // copy all variables for undo()
+        widthsCopy = Arrays.copyOf(widths, widths.length);
+        heightsCopy = Arrays.copyOf(heights, heights.length);
+
+        for (int i=0; i<gridCopy.length; i++) {
+            gridCopy[i] = Arrays.copyOf(grid[i], grid[i].length);
+        }
+    }
 
     private int getRowFilled() {
 
@@ -215,13 +236,18 @@ public class Board	{
 	*/
 	public int clearRows() {
 
+        // do clearRows() w/o place()
+        if (committed) {
+            backup();
+        }
+
 		int rowsCleared = 0;
         int indexRowFilled = getRowFilled();
-        while (true) {
+        while (!(indexRowFilled == -1)) {
             clearRow(indexRowFilled);
             rowsCleared++;
             indexRowFilled = getRowFilled();
-            if (indexRowFilled == -1) { break; }
+
         }
 		sanityCheck();
         committed = false;
@@ -263,13 +289,29 @@ public class Board	{
         if (committed) { return; }
 		else {
 
-            widths = widthsCopy;
-            heights = heightsCopy;
-            grid = gridCopy;
+//            widths = widthsCopy;
+//            heights = heightsCopy;
+//            grid = gridCopy;
+            swap();
 
             committed = true;
         }
 	}
+
+    private void swap() {
+
+        int[] temp = widthsCopy;
+        widthsCopy = widths;
+        widths = temp;
+
+        temp = heightsCopy;
+        heightsCopy = heights;
+        heights = temp;
+
+        boolean[][] gridtemp = gridCopy;
+        gridCopy = grid;
+        grid = gridtemp;
+    }
 
 	/**
 	 Puts the board in the committed state.
@@ -295,6 +337,7 @@ public class Board	{
 
         }
     }
+
 
     private int[] buildHeight() {
 
@@ -346,6 +389,20 @@ public class Board	{
 		for (int x=0; x<width+2; x++) buff.append('-');
 		return(buff.toString());
 	}
+
+    public String copyToString() {
+        StringBuilder buff = new StringBuilder();
+        for (int y = height-1; y>=0; y--) {
+            buff.append('|');
+            for (int x=0; x<width; x++) {
+                if (gridCopy[x][y]) buff.append('+');
+                else buff.append(' ');
+            }
+            buff.append("|\n");
+        }
+        for (int x=0; x<width+2; x++) buff.append('-');
+        return(buff.toString());
+    }
 }
 
 

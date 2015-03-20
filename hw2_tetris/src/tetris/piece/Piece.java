@@ -1,7 +1,7 @@
 // Piece.java
-package tetris;
+package tetris.piece;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import tetris.TPoint;
 
 import java.util.*;
 
@@ -240,11 +240,16 @@ public class Piece {
         Piece rotated = root.computeNextRotation();
         root.next = rotated;
 
-        while (!rotated.equals(root)) {
+        while (true) {
 
             prev = rotated;
             rotated = prev.computeNextRotation();
-            prev.next = rotated;
+            if (root.equals(rotated)) {
+                prev.next = root;
+                break;
+            } else {
+                prev.next = rotated;
+            }
 
         }
 		return root;
