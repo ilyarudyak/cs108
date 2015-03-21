@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import tetris.piece.Piece;
 
-import java.util.Arrays;
 
 public class BoardTest {
 	Board b;

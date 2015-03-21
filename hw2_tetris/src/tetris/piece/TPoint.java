@@ -1,6 +1,6 @@
 //TPoint.java
 
-package tetris;
+package tetris.piece;
 
 /*
  This is just a trivial "struct" type class --

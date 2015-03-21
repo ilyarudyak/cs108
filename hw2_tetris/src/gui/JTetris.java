@@ -1,5 +1,5 @@
 // JTetris.java
-package tetris;
+package gui;
 
 import tetris.board.Board;
 import tetris.piece.Piece;

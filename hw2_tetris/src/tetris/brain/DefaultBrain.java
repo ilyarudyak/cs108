@@ -1,6 +1,6 @@
 // DefaultBrain.java
 
-package tetris;
+package tetris.brain;
 
 import tetris.board.Board;
 import tetris.piece.Piece;
@@ -20,6 +20,7 @@ import tetris.piece.Piece;
 */
 
 public class DefaultBrain implements Brain {
+
     /**
      Given a piece and a board, returns a move object that represents
      the best play for that piece, or returns null if no play is possible.
@@ -42,7 +43,7 @@ public class DefaultBrain implements Brain {
             final int yBound = limitHeight - current.getHeight()+1;
             final int xBound = board.getWidth() - current.getWidth()+1;
             
-            // For current rotation, try all the possible columns
+            // for each rotation, try all the possible columns
             for (int x = 0; x<xBound; x++) {
                 int y = board.dropHeight(current, x);
                 if (y<yBound) {    // piece does not stick up too far
@@ -79,7 +80,7 @@ public class DefaultBrain implements Brain {
     }
     
     
-    /*
+    /**
      A simple brain function.
      Given a board, produce a number that rates
      that board position -- larger numbers for worse boards.

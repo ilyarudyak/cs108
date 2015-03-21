@@ -2,7 +2,7 @@
 package tetris.board;
 
 import com.google.common.primitives.Ints;
-import tetris.TPoint;
+import tetris.piece.TPoint;
 import tetris.piece.Piece;
 
 import java.util.Arrays;
@@ -54,14 +54,13 @@ public class Board	{
 		this.height = height;
 		grid = new boolean[width][height];
         gridCopy = new boolean[width][height];
+
 		committed = true;
 
         widths = new int[height];
         heights = new int[width];
         widthsCopy = new int[height];
         heightsCopy = new int[width];
-
-		
 	}
 
     // ------------- grid getters ---------------
@@ -85,6 +84,10 @@ public class Board	{
      Returns true if the given block is filled in the board.
      Blocks outside of the valid width/height area
      always return true.
+
+     We don't really use this method - we need different
+     return codes for placement on occupied cell and
+     outside the grid.
      */
     public boolean getGrid(int x, int y) {
 
@@ -112,6 +115,9 @@ public class Board	{
 	/**
 	 Returns the max column height present in the board.
 	 For an empty board this is 0.
+
+     We don't use this in our code. Probably we have to create
+
 	*/
 	public int getMaxHeight() {	 
 		return Ints.max(heights);
@@ -194,7 +200,6 @@ public class Board	{
         sanityCheck();
 		return result;
 	}
-
     private void updateWidthHeight(int x, int y) {
         // update widths and heights
         widths[y]++;
@@ -202,7 +207,6 @@ public class Board	{
             heights[x] = y + 1;
         }
     }
-
     private void backup() {
         // copy all variables for undo()
         widthsCopy = Arrays.copyOf(widths, widths.length);
@@ -212,7 +216,6 @@ public class Board	{
             gridCopy[i] = Arrays.copyOf(grid[i], grid[i].length);
         }
     }
-
     private int getRowFilled() {
 
         for (int i=0; i<widths.length; i++) {
@@ -253,7 +256,6 @@ public class Board	{
         committed = false;
 		return rowsCleared;
 	}
-
     private void clearRow(int y0) {
 
         for (int x=0; x<grid.length; x++) {
@@ -297,7 +299,6 @@ public class Board	{
             committed = true;
         }
 	}
-
     private void swap() {
 
         int[] temp = widthsCopy;
@@ -337,8 +338,6 @@ public class Board	{
 
         }
     }
-
-
     private int[] buildHeight() {
 
         int[] h = new int[width];
@@ -355,7 +354,6 @@ public class Board	{
         return h;
 
     }
-
     private int[] buildWidths() {
 
         int[] w = new int[height];
@@ -370,7 +368,7 @@ public class Board	{
         return w;
     }
 	
-	/*
+	/**
 	 Renders the board state as a big String, suitable for printing.
 	 This is the sort of print-obj-state utility that can help see complex
 	 state change over time.
@@ -389,7 +387,6 @@ public class Board	{
 		for (int x=0; x<width+2; x++) buff.append('-');
 		return(buff.toString());
 	}
-
     public String copyToString() {
         StringBuilder buff = new StringBuilder();
         for (int y = height-1; y>=0; y--) {

@@ -1,5 +1,5 @@
 // BadBrain.java
-package tetris;
+package tetris.brain;
 
 import tetris.board.Board;
 

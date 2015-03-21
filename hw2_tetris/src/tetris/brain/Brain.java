@@ -1,6 +1,6 @@
 // Brain.java -- the interface for Tetris brains
 
-package tetris;
+package tetris.brain;
 
 import tetris.board.Board;
 import tetris.piece.Piece;

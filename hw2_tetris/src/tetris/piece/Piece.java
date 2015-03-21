@@ -1,8 +1,6 @@
 // Piece.java
 package tetris.piece;
 
-import tetris.TPoint;
-
 import java.util.*;
 
 /**
