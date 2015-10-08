@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="240c0c08-8665-4916-a218-9c686a92ddf3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tetris/board/BoardTestAuto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/JBrainTetris.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tetris/BadBrain.java" afterPath="$PROJECT_DIR$/src/tetris/brain/BadBrain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tetris/Brain.java" afterPath="$PROJECT_DIR$/src/tetris/brain/Brain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tetris/DefaultBrain.java" afterPath="$PROJECT_DIR$/src/tetris/brain/DefaultBrain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tetris/JTetris.java" afterPath="$PROJECT_DIR$/src/gui/JTetris.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tetris/TPoint.java" afterPath="$PROJECT_DIR$/src/tetris/piece/TPoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tetris/board/Board.java" afterPath="$PROJECT_DIR$/src/tetris/board/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tetris/board/BoardTest.java" afterPath="$PROJECT_DIR$/src/tetris/board/BoardTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tetris/piece/Piece.java" afterPath="$PROJECT_DIR$/src/tetris/piece/Piece.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hw2_tetris.iws" />
@@ -36,7 +26,92 @@
     <favorites_list name="hw2_tetris" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Brain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tetris/brain/Brain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+              <caret line="25" column="49" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultBrain.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/tetris/brain/DefaultBrain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.91816694" vertical-offset="0" max-vertical-offset="1360">
+              <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+              <folding>
+                <element signature="docComment;class#DefaultBrain#0" expanded="false" />
+                <element signature="docComment;method#rateBoard#0;class#DefaultBrain#0" expanded="false" />
+                <element signature="method#rateBoard#0;class#DefaultBrain#0" expanded="false" />
+                <element signature="e#3801#3846#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JTetris.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/JTetris.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="890" max-vertical-offset="5220">
+              <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+              <folding>
+                <element signature="docComment;method#JTetris#0;class#JTetris#0" expanded="false" />
+                <element signature="method#JTetris#0;class#JTetris#0" expanded="false" />
+                <element signature="e#2840#2903#0" expanded="false" />
+                <element signature="e#5002#5045#0" expanded="false" />
+                <element signature="docComment;method#startGame#0;class#JTetris#0" expanded="false" />
+                <element signature="method#startGame#0;class#JTetris#0" expanded="false" />
+                <element signature="docComment;method#enableButtons#0;class#JTetris#0" expanded="false" />
+                <element signature="method#enableButtons#0;class#JTetris#0" expanded="false" />
+                <element signature="docComment;method#stopGame#0;class#JTetris#0" expanded="false" />
+                <element signature="method#stopGame#0;class#JTetris#0" expanded="false" />
+                <element signature="docComment;method#setCurrent#0;class#JTetris#0" expanded="false" />
+                <element signature="method#setCurrent#0;class#JTetris#0" expanded="false" />
+                <element signature="e#6822#6831#0" expanded="false" />
+                <element signature="docComment;method#pickNextPiece#0;class#JTetris#0" expanded="false" />
+                <element signature="method#pickNextPiece#0;class#JTetris#0" expanded="false" />
+                <element signature="docComment;method#addNewPiece#0;class#JTetris#0" expanded="false" />
+                <element signature="method#addNewPiece#0;class#JTetris#0" expanded="false" />
+                <element signature="e#7995#8032#0" expanded="false" />
+                <element signature="docComment;method#updateCounters#0;class#JTetris#0" expanded="false" />
+                <element signature="method#updateCounters#0;class#JTetris#0" expanded="false" />
+                <element signature="docComment;method#computeNewPosition#0;class#JTetris#0" expanded="false" />
+                <element signature="method#computeNewPosition#0;class#JTetris#0" expanded="false" />
+                <element signature="e#9240#9299#0" expanded="false" />
+                <element signature="e#9644#9695#0" expanded="false" />
+                <element signature="e#10785#10832#0" expanded="false" />
+                <element signature="e#11621#11671#0" expanded="false" />
+                <element signature="docComment;method#repaintPiece#0;class#JTetris#0" expanded="false" />
+                <element signature="method#repaintPiece#0;class#JTetris#0" expanded="false" />
+                <element signature="e#12869#12908#0" expanded="false" />
+                <element signature="docComment;method#paintComponent#0;class#JTetris#0" expanded="false" />
+                <element signature="method#paintComponent#0;class#JTetris#0" expanded="false" />
+                <element signature="e#14347#14387#0" expanded="false" />
+                <element signature="e#14681#14720#0" expanded="false" />
+                <element signature="docComment;method#updateTimer#0;class#JTetris#0" expanded="false" />
+                <element signature="method#updateTimer#0;class#JTetris#0" expanded="false" />
+                <element signature="docComment;method#createFrame#0;class#JTetris#0" expanded="false" />
+                <element signature="docComment;method#main#0;class#JTetris#0" expanded="false" />
+                <element signature="e#18268#18305#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BadBrain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tetris/brain/BadBrain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -560,14 +635,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="3" y="23" width="1272" height="731" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761312" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32707354" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39906102" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -579,7 +654,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27073172" sideWeight="0.49608764" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27073172" sideWeight="0.49608764" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27073172" sideWeight="0.5039124" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1020,16 +1095,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tetris/brain/BadBrain.java">
+    <entry file="file://$PROJECT_DIR$/src/gui/JBrainTetris.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22258593" vertical-offset="0" max-vertical-offset="611">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        <state vertical-scroll-proportion="1.4468085" vertical-offset="0" max-vertical-offset="1275">
+          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
+          <folding>
+            <element signature="docComment;class#JBrainTetris#0" expanded="false" />
+            <element signature="docComment;method#JBrainTetris#0;class#JBrainTetris#0" expanded="false" />
+            <element signature="method#createControlPanel#0;class#JBrainTetris#0" expanded="false" />
+            <element signature="method#main#0;class#JBrainTetris#0" expanded="false" />
+            <element signature="e#2167#2204#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/JTetris.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.040783033" vertical-offset="1012" max-vertical-offset="5916">
+        <state vertical-scroll-proportion="0.0" vertical-offset="890" max-vertical-offset="5220">
           <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
           <folding>
             <element signature="docComment;method#JTetris#0;class#JTetris#0" expanded="false" />
@@ -1074,37 +1156,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tetris/brain/BadBrain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tetris/brain/Brain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tetris/brain/DefaultBrain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="1360">
+        <state vertical-scroll-proportion="0.91816694" vertical-offset="0" max-vertical-offset="1360">
           <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
           <folding>
             <element signature="docComment;class#DefaultBrain#0" expanded="false" />
             <element signature="docComment;method#rateBoard#0;class#DefaultBrain#0" expanded="false" />
             <element signature="method#rateBoard#0;class#DefaultBrain#0" expanded="false" />
             <element signature="e#3801#3846#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tetris/brain/Brain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66557914" vertical-offset="0" max-vertical-offset="613">
-          <caret line="25" column="49" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/JBrainTetris.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4468085" vertical-offset="0" max-vertical-offset="1275">
-          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
-          <folding>
-            <element signature="docComment;class#JBrainTetris#0" expanded="false" />
-            <element signature="docComment;method#JBrainTetris#0;class#JBrainTetris#0" expanded="false" />
-            <element signature="method#createControlPanel#0;class#JBrainTetris#0" expanded="false" />
-            <element signature="method#main#0;class#JBrainTetris#0" expanded="false" />
-            <element signature="e#2167#2204#0" expanded="false" />
           </folding>
         </state>
       </provider>
