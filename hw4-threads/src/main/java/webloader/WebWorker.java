@@ -1,10 +1,4 @@
-package assign4;
-
-import java.io.*;
-import java.net.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.*;
+package webloader;
 
 public class WebWorker extends Thread {
 /*

@@ -5,7 +5,7 @@ apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
-mainClassName = "bank.Bank"
+mainClassName = "hash.Cracker"
 
 repositories {
     mavenCentral()
@@ -20,4 +20,5 @@ task execute(type: org.gradle.api.tasks.JavaExec) {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.googlecode.combinatoricslib:combinatoricslib:2.1'
 }
