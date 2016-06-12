@@ -6,7 +6,7 @@ apply plugin: 'application'
 //mainClassName = "lesson2.HelloWorld"
 //mainClassName = "lesson2.LooksFeels"
 //mainClassName = "lesson2.ImageLabel"
-mainClassName = "lesson3.ButtonSimple"
+mainClassName = "lesson3.ButtonWithImage"
 
 repositories {
     mavenCentral()
