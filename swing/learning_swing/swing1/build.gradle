@@ -1,8 +1,12 @@
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
-sourceCompatibility = 1.5
+//mainClassName = "lesson2.HelloWorld"
+//mainClassName = "lesson2.LooksFeels"
+//mainClassName = "lesson2.ImageLabel"
+mainClassName = "lesson3.ButtonSimple"
 
 repositories {
     mavenCentral()
