@@ -2,10 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 import java.io.IOException;
 
 /**
@@ -57,6 +54,14 @@ public class MainFrame extends JFrame {
         fileMenu.add(importDataItem);
         fileMenu.addSeparator();
         fileMenu.add(exitItem);
+
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+        exitItem.setMnemonic(KeyEvent.VK_X);
+
+        exitItem.addActionListener( (e) -> System.exit(0) );
+        
+        exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
+                ActionEvent.CTRL_MASK));
 
         // create window menu with submenu
         JMenu windowMenu = new JMenu("Window");
