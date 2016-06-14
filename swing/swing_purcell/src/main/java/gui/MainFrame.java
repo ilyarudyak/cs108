@@ -22,8 +22,9 @@ public class MainFrame extends JFrame {
         formPanel = new FormPanel();
 
         toolbar.setStringListener( (text) -> textPanel.appendText(text) );
-        formPanel.setFormListener( (e) -> textPanel.appendText(e.getName() + " "
-                + e.getOccupation() + "\n") );
+        formPanel.setFormListener( (e) -> textPanel.appendText(e.getName() + ": " +
+                e.getOccupation() + " " + e.getAgeCategory().getId() + " " +
+                e.getEmploymentCategory() + "\n") );
 
         add(textPanel, BorderLayout.CENTER);
         add(toolbar, BorderLayout.NORTH);

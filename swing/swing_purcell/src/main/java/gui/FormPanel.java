@@ -20,7 +20,7 @@ public class FormPanel extends JPanel {
     private JTextField occupationField;
     private JButton okBtn;
     private JList<AgeCategory> ageList;
-    private JComboBox empCombo;
+    private JComboBox<String> empCombo;
     private JCheckBox citizenCheck;
     private JTextField taxField;
     private JLabel taxLabel;
@@ -39,6 +39,7 @@ public class FormPanel extends JPanel {
         setupName();
         setupOccupation();
         setupOkButton();
+        setupAgeList();
         setupOtherFields();
 
         layoutComponents();
@@ -64,14 +65,17 @@ public class FormPanel extends JPanel {
         okBtn.setMnemonic(KeyEvent.VK_O);
 
         okBtn.addActionListener( (e) -> {
+            // get info from standard event object
             String name = nameField.getText();
             String occupation = occupationField.getText();
+            // retrieve AgeCategory object
             AgeCategory ageCat = ageList.getSelectedValue();
-            String empCat = (String) empCombo.getSelectedItem();
+            String empCat = empCombo.getItemAt(empCombo.getSelectedIndex());
             String taxId = taxField.getText();
             boolean usCitizen = citizenCheck.isSelected();
             String gender = genderGroup.getSelection().getActionCommand();
 
+            // package info into custom event object
             FormEvent ev = new FormEvent(this, name, occupation, ageCat,
                     empCat, taxId, usCitizen, gender);
 
@@ -80,32 +84,11 @@ public class FormPanel extends JPanel {
             }
         });
     }
-    private void setupOtherFields() {
+    private void setupAgeList() {
         ageList = new JList<>();
-        empCombo = new JComboBox();
-        citizenCheck = new JCheckBox();
-        taxField = new JTextField(10);
-        taxLabel = new JLabel("Tax ID: ");
-        maleRadio = new JRadioButton("male");
-        femaleRadio = new JRadioButton("female");
-
-        maleRadio.setActionCommand("male");
-        femaleRadio.setActionCommand("female");
-
-        genderGroup = new ButtonGroup();
-
-        maleRadio.setSelected(true);
-
-        // Set up gender radios
-        genderGroup.add(maleRadio);
-        genderGroup.add(femaleRadio);
-
-        // Set up tax ID
-        taxLabel.setEnabled(false);
-        taxField.setEnabled(false);
 
         // Set up list box
-        DefaultListModel ageModel = new DefaultListModel();
+        DefaultListModel<AgeCategory> ageModel = new DefaultListModel<>();
         ageModel.addElement(new AgeCategory(0, "Under 18"));
         ageModel.addElement(new AgeCategory(1, "18 to 65"));
         ageModel.addElement(new AgeCategory(2, "65 or over"));
@@ -115,14 +98,49 @@ public class FormPanel extends JPanel {
         ageList.setBorder(BorderFactory.createEtchedBorder());
         ageList.setSelectedIndex(1);
 
-        // Set up combo box.
-        DefaultComboBoxModel empModel = new DefaultComboBoxModel();
+    }
+    private void setupOtherFields() {
+
+        // set up combo box.
+        empCombo = new JComboBox<>();
+
+        DefaultComboBoxModel<String> empModel = new DefaultComboBoxModel<>();
         empModel.addElement("employed");
         empModel.addElement("self-employed");
         empModel.addElement("unemployed");
         empCombo.setModel(empModel);
         empCombo.setSelectedIndex(0);
         empCombo.setEditable(true);
+
+        // set up check box
+        citizenCheck = new JCheckBox();
+
+        citizenCheck.addActionListener( (e) -> {
+            boolean isTicked = citizenCheck.isSelected();
+            taxLabel.setEnabled(isTicked);
+            taxField.setEnabled(isTicked);
+        });
+
+        // set up tax field
+        taxField = new JTextField(10);
+        taxLabel = new JLabel("Tax ID: ");
+
+        taxLabel.setEnabled(false);
+        taxField.setEnabled(false);
+
+        // set up radio buttons
+        maleRadio = new JRadioButton("male");
+        femaleRadio = new JRadioButton("female");
+
+        maleRadio.setActionCommand("male");
+        femaleRadio.setActionCommand("female");
+
+        maleRadio.setSelected(true);
+
+        genderGroup = new ButtonGroup();
+        genderGroup.add(maleRadio);
+        genderGroup.add(femaleRadio);
+
     }
     private void setupDims() {
         Dimension dim = getPreferredSize();
