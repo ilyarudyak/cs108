@@ -34,23 +34,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.4318182">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#MainFrame#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FormPanel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FormPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/FormPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.90909094">
-              <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
               <folding>
                 <element signature="docComment;class#FormPanel#0" expanded="false" />
                 <element signature="method#FormPanel#0;class#FormPanel#0" expanded="false" />
@@ -375,8 +375,8 @@
         <option value="$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/listeners/FormListener.java" />
         <option value="$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/model/AgeCategory.java" />
         <option value="$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/events/FormEvent.java" />
-        <option value="$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/MainFrame.java" />
         <option value="$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/FormPanel.java" />
+        <option value="$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/MainFrame.java" />
       </list>
     </option>
   </component>
@@ -878,7 +878,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#MainFrame#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -984,20 +984,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/FormPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90909094">
-          <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
           <folding>
             <element signature="docComment;class#FormPanel#0" expanded="false" />
             <element signature="method#FormPanel#0;class#FormPanel#0" expanded="false" />
@@ -1009,6 +999,16 @@
             <element signature="method#setupDims#0;class#FormPanel#0" expanded="false" />
             <element signature="method#setupBorder#0;class#FormPanel#0" expanded="false" />
             <element signature="method#layoutComponents#0;class#FormPanel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../languages/java/cs108/swing/swing_purcell/src/main/java/gui/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4318182">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#MainFrame#0" expanded="false" />
           </folding>
         </state>
       </provider>
