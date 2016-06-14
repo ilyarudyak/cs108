@@ -1,4 +1,4 @@
-package gui;
+package gui.listeners;
 
 /**
  * Created by ilyarudyak on 6/14/16.

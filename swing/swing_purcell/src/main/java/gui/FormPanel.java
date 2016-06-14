@@ -1,5 +1,7 @@
 package gui;
 
+import gui.events.FormEvent;
+import gui.listeners.FormListener;
 import model.AgeCategory;
 
 import javax.swing.*;
@@ -17,7 +19,7 @@ public class FormPanel extends JPanel {
     private JTextField nameField;
     private JTextField occupationField;
     private JButton okBtn;
-    private JList ageList;
+    private JList<AgeCategory> ageList;
     private JComboBox empCombo;
     private JCheckBox citizenCheck;
     private JTextField taxField;
@@ -27,27 +29,63 @@ public class FormPanel extends JPanel {
     private JRadioButton femaleRadio;
     private ButtonGroup genderGroup;
 
-    public FormPanel() {
-        Dimension dim = getPreferredSize();
-        dim.width = 250;
-        setPreferredSize(dim);
+    private FormListener formListener;
 
+    public FormPanel() {
+
+        setupDims();
+        setupBorder();
+
+        setupName();
+        setupOccupation();
+        setupOkButton();
+        setupOtherFields();
+
+        layoutComponents();
+    }
+    public void setFormListener(FormListener listener) {
+        this.formListener = listener;
+    }
+
+    // helper methods
+    private void setupName() {
         nameLabel = new JLabel("Name: ");
-        occupationLabel = new JLabel("Occupation: ");
         nameField = new JTextField(10);
+
+        nameLabel.setDisplayedMnemonic(KeyEvent.VK_N);
+        nameLabel.setLabelFor(nameField);
+    }
+    private void setupOccupation() {
+        occupationLabel = new JLabel("Occupation: ");
         occupationField = new JTextField(10);
-        ageList = new JList();
+    }
+    private void setupOkButton() {
+        okBtn = new JButton("OK");
+        okBtn.setMnemonic(KeyEvent.VK_O);
+
+        okBtn.addActionListener( (e) -> {
+            String name = nameField.getText();
+            String occupation = occupationField.getText();
+            AgeCategory ageCat = ageList.getSelectedValue();
+            String empCat = (String) empCombo.getSelectedItem();
+            String taxId = taxField.getText();
+            boolean usCitizen = citizenCheck.isSelected();
+            String gender = genderGroup.getSelection().getActionCommand();
+
+            FormEvent ev = new FormEvent(this, name, occupation, ageCat,
+                    empCat, taxId, usCitizen, gender);
+
+            if (formListener != null) {
+                formListener.formEventOccurred(ev);
+            }
+        });
+    }
+    private void setupOtherFields() {
+        ageList = new JList<>();
         empCombo = new JComboBox();
         citizenCheck = new JCheckBox();
         taxField = new JTextField(10);
         taxLabel = new JLabel("Tax ID: ");
-        okBtn = new JButton("OK");
-
-        okBtn.setMnemonic(KeyEvent.VK_O);
-
-        nameLabel.setDisplayedMnemonic(KeyEvent.VK_N);
-        nameLabel.setLabelFor(nameField);
-
         maleRadio = new JRadioButton("male");
         femaleRadio = new JRadioButton("female");
 
@@ -68,9 +106,9 @@ public class FormPanel extends JPanel {
 
         // Set up list box
         DefaultListModel ageModel = new DefaultListModel();
-        ageModel.addElement(AgeCategory.child);
-        ageModel.addElement(AgeCategory.adult);
-        ageModel.addElement(AgeCategory.senior);
+        ageModel.addElement(new AgeCategory(0, "Under 18"));
+        ageModel.addElement(new AgeCategory(1, "18 to 65"));
+        ageModel.addElement(new AgeCategory(2, "65 or over"));
         ageList.setModel(ageModel);
 
         ageList.setPreferredSize(new Dimension(110, 70));
@@ -85,15 +123,18 @@ public class FormPanel extends JPanel {
         empCombo.setModel(empModel);
         empCombo.setSelectedIndex(0);
         empCombo.setEditable(true);
-
+    }
+    private void setupDims() {
+        Dimension dim = getPreferredSize();
+        dim.width = 250;
+        setPreferredSize(dim);
+    }
+    private void setupBorder() {
         Border innerBorder = BorderFactory.createTitledBorder("Add Person");
         Border outerBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
         setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
-
-        layoutComponents();
     }
-
-    public void layoutComponents() {
+    private void layoutComponents() {
 
         setLayout(new GridBagLayout());
 
