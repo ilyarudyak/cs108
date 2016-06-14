@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
     private TextPanel textPanel;
     private Toolbar toolbar;
     private FormPanel formPanel;
+    private JFileChooser fileChooser;
 
     public MainFrame() {
         super("Hello my friend!");
@@ -24,6 +25,7 @@ public class MainFrame extends JFrame {
         textPanel = new TextPanel();
         toolbar = new Toolbar();
         formPanel = new FormPanel();
+        fileChooser = new JFileChooser();
 
         toolbar.setStringListener( (text) -> textPanel.appendText(text) );
         formPanel.setFormListener( (e) -> textPanel.appendText(e.getName() + ": " +
@@ -58,8 +60,28 @@ public class MainFrame extends JFrame {
         fileMenu.setMnemonic(KeyEvent.VK_F);
         exitItem.setMnemonic(KeyEvent.VK_X);
 
-        exitItem.addActionListener( (e) -> System.exit(0) );
-        
+        importDataItem.addActionListener( (e) -> {
+            if (fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+                System.out.println(fileChooser.getSelectedFile());
+            }
+        });
+
+        exportDataItem.addActionListener( (e) -> {
+            if (fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+                System.out.println(fileChooser.getSelectedFile());
+            }
+        });
+
+        exitItem.addActionListener( (e) -> {
+            int action = JOptionPane.showConfirmDialog(MainFrame.this,
+                    "Do you really want to exit the application?",
+                    "Confirm Exit", JOptionPane.OK_CANCEL_OPTION);
+
+            if (action == JOptionPane.OK_OPTION) {
+                System.exit(0);
+            }
+        } );
+
         exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
                 ActionEvent.CTRL_MASK));
 
