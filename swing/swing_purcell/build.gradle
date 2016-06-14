@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = "complete_reference.LambdaDemo2"
+mainClassName = "App"
 
 repositories {
     mavenCentral()
